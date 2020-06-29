@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/viewTabMeeting"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="right|center_vertical"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#8080cc"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnAudio"
+                style="@style/ZMButton.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="Audio" />
+
+            <Button
+                android:id="@+id/btnSwitchToNextCamera"
+                style="@style/ZMButton.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="Camera" />
+
+            <Button
+                android:id="@+id/btnShare"
+                style="@style/ZMButton.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="Share" />
+
+            <Button
+                android:id="@+id/btnStopShare"
+                style="@style/ZMButton.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="Stop Share" />
+
+            <Button
+                android:id="@+id/btnParticipants"
+                style="@style/ZMButton.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="Participants" />
+
+            <Button
+                android:id="@+id/btnMoreOptions"
+                style="@style/ZMButton.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="More" />
+
+            <Button
+                android:id="@+id/btnLeaveZoomMeeting"
+                style="@style/ZMButton.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="Leave" />
+        </LinearLayout>
+
+        <include
+            android:id="@+id/meetingContent"
+            layout="@layout/zm_conf_main_screen"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tabs"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:background="#8080ff"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/btnTabWelcome"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="Welcome" />
+
+        <Button
+            android:id="@+id/btnTabPage2"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="Page 2" />
+
+        <Button
+            android:id="@+id/btnTabMeeting"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="Meeting" />
+
+    </LinearLayout>
+
+</LinearLayout>
