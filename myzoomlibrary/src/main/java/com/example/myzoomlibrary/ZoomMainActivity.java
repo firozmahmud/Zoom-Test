@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import javax.security.auth.login.LoginException;
 
+import us.zoom.sdk.JoinMeetingOptions;
+import us.zoom.sdk.JoinMeetingParams;
 import us.zoom.sdk.MeetingError;
 import us.zoom.sdk.MeetingService;
 import us.zoom.sdk.MeetingServiceListener;
@@ -50,7 +52,7 @@ public class ZoomMainActivity extends Activity implements ZoomConstants, Meeting
     private EditText meetingId, userName;
     private Button joinBtn;
     private String id;
-    private String name;
+    private String password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,7 +123,7 @@ public class ZoomMainActivity extends Activity implements ZoomConstants, Meeting
             public void onClick(View view) {
 
                 id = meetingId.getText().toString().trim();
-                name = userName.getText().toString().trim();
+                password = userName.getText().toString().trim();
 
                 if (id.isEmpty()) {
 
@@ -130,13 +132,13 @@ public class ZoomMainActivity extends Activity implements ZoomConstants, Meeting
                     return;
                 }
 
-                if (name.isEmpty()) {
-                    Toast.makeText(ZoomMainActivity.this, "Name is needed", Toast.LENGTH_SHORT).show();
-                    Log.i("Zoom", "Name is needed");
+                if (password.isEmpty()) {
+                    Toast.makeText(ZoomMainActivity.this, "Password is needed", Toast.LENGTH_SHORT).show();
+                    Log.i("Zoom", "Password is needed");
                     return;
                 }
 
-                DISPLAY_NAME = name;
+                //DISPLAY_NAME = name;
 
 
                 ZoomSDK zoomSDK = ZoomSDK.getInstance();
@@ -300,7 +302,20 @@ public class ZoomMainActivity extends Activity implements ZoomConstants, Meeting
         params.meetingNo = id;
         params.displayName = DISPLAY_NAME;
 
-        int ret = meetingService.startMeetingWithParams(this, params, opts);
+
+        JoinMeetingParams params2 = new JoinMeetingParams();
+
+        params2.meetingNo = id;
+        params2.password = password;
+
+        JoinMeetingOptions opts2 = new JoinMeetingOptions();
+        opts2.no_invite = true;
+
+        //int ret = meetingService.startMeetingWithParams(this, params, opts);
+        int ret = meetingService.joinMeetingWithParams(this, params2, opts2);
+
+        zoomSDK.getMeetingSettingsHelper().enableForceAutoStartMyVideoWhenJoinMeeting(true);
+        zoomSDK.getMeetingSettingsHelper().setAutoConnectVoIPWhenJoinMeeting(true);
 
         Log.i(TAG, "onClickBtnStartMeeting, ret=" + ret);
     }
